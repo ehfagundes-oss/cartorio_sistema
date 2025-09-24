@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
 </head>
 <body>
-
     <div class="container">
         <header>
             <h1>Pré-Registro de Óbito</h1>
@@ -15,63 +14,27 @@
         </header>
 
         <form action="/enviar-obito" method="post" enctype="multipart/form-data">
-
-            <fieldset>
-                <legend>Dados do Falecido(a)</legend>
-                <div class="input-group"><label for="falecido_nome">Nome Completo</label><input type="text" id="falecido_nome" name="falecido_nome" required></div>
-                <div class="input-group"><label for="falecido_dt_nasc">Data de Nascimento</label><input type="date" id="falecido_dt_nasc" name="falecido_dt_nasc" required></div>
-                <div class="input-group"><label for="falecido_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="falecido_naturalidade" name="falecido_naturalidade" required></div>
-                <div class="input-group">
-                    <label for="falecido_estado_civil">Estado Civil</label>
-                    <select id="falecido_estado_civil" name="falecido_estado_civil" required>
-                        <option value="">Selecione...</option><option value="solteiro">Solteiro(a)</option><option value="casado">Casado(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option><option value="uniao_estavel">União Estável</option>
-                    </select>
-                </div>
-                <div class="input-group hidden" id="conjuge_group"><label for="falecido_conjuge">Nome do Cônjuge</label><input type="text" id="falecido_conjuge" name="falecido_conjuge"></div>
-                <div class="input-group"><label for="falecido_profissao">Profissão</label><input type="text" id="falecido_profissao" name="falecido_profissao"></div>
-                <div class="input-group"><label for="falecido_rg">RG</label><input type="text" id="falecido_rg" name="falecido_rg"></div>
-                <div class="input-group"><label for="falecido_cpf">CPF</label><input type="text" id="falecido_cpf" name="falecido_cpf"></div>
-                <div class="input-group"><label for="falecido_cnh">CNH (se houver)</label><input type="text" id="falecido_cnh" name="falecido_cnh"></div>
-                <div class="input-group"><label for="falecido_pais">Nome Completo dos Pais</label><textarea id="falecido_pais" name="falecido_pais" rows="3" placeholder="Nome do Pai&#10;Nome da Mãe"></textarea></div>
-                <div class="input-group"><label for="falecido_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="falecido_endereco" name="falecido_endereco"></div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Informações do Óbito e Adicionais</legend>
-                <div class="input-group"><label for="do_numero">Número da DO (Declaração de Óbito)</label><input type="text" id="do_numero" name="do_numero" required></div>
-                <div class="input-group"><label for="medico_nome">Nome do Médico</label><input type="text" id="medico_nome" name="medico_nome" required></div>
-                <div class="input-group"><label for="medico_crm">CRM do Médico</label><input type="text" id="medico_crm" name="medico_crm" required></div>
-                <div class="input-group"><label for="causa_morte">Causa(s) da Morte</label><textarea id="causa_morte" name="causa_morte" rows="3" required></textarea></div>
-                <div class="input-group"><label for="data_obito">Data do Óbito</label><input type="date" id="data_obito" name="data_obito" required></div>
-                <div class="input-group"><label for="hora_obito">Horário do Óbito</label><input type="time" id="hora_obito" name="hora_obito" required></div>
-                <div class="input-group"><label for="local_obito">Local do Óbito (Hospital, residência, etc.)</label><input type="text" id="local_obito" name="local_obito" required></div>
-                <div class="input-group"><label for="local_sepultamento">Local de Sepultamento</label><input type="text" id="local_sepultamento" name="local_sepultamento" required></div>
-                <div class="input-group"><label for="era_eleitor">Era eleitor?</label><select id="era_eleitor" name="era_eleitor" required><option value="sim">Sim</option><option value="nao">Não</option></select></div>
-                <div class="input-group"><label for="deixou_testamento">Deixou testamento?</label><select id="deixou_testamento" name="deixou_testamento" required><option value="sim">Sim</option><option value="nao" selected>Não</option></select></div>
-                <div class="input-group"><label for="deixou_bens">Deixou bens a inventariar?</label><select id="deixou_bens" name="deixou_bens" required><option value="sim">Sim</option><option value="nao">Não</option></select></div>
-                <div class="input-group"><label for="tinha_filhos">Tinha filhos?</label><select id="tinha_filhos" name="tinha_filhos" required><option value="nao">Não</option><option value="sim">Sim</option></select></div>
-                <div class="input-group hidden" id="filhos_group"><label for="nomes_filhos">Nome Completo dos Filhos</label><textarea id="nomes_filhos" name="nomes_filhos" rows="4" placeholder="Liste o nome de todos os filhos, um por linha."></textarea></div>
-            </fieldset>
+            <fieldset><legend>Dados do Falecido(a)</legend><div class="input-group"><label for="falecido_nome">Nome Completo</label><input type="text" id="falecido_nome" name="falecido_nome" required></div><div class="input-group"><label for="falecido_dt_nasc">Data de Nascimento</label><input type="date" id="falecido_dt_nasc" name="falecido_dt_nasc" required></div><div class="input-group"><label for="falecido_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="falecido_naturalidade" name="falecido_naturalidade" required></div><div class="input-group"><label for="falecido_estado_civil">Estado Civil</label><select id="falecido_estado_civil" name="falecido_estado_civil" required><option value="">Selecione...</option><option value="solteiro">Solteiro(a)</option><option value="casado">Casado(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option><option value="uniao_estavel">União Estável</option></select></div><div class="input-group hidden" id="conjuge_group"><label for="falecido_conjuge">Nome do Cônjuge</label><input type="text" id="falecido_conjuge" name="falecido_conjuge"></div><div class="input-group"><label for="falecido_profissao">Profissão</label><input type="text" id="falecido_profissao" name="falecido_profissao"></div><div class="input-group"><label for="falecido_rg">RG</label><input type="text" id="falecido_rg" name="falecido_rg"></div><div class="input-group"><label for="falecido_cpf">CPF</label><input type="text" id="falecido_cpf" name="falecido_cpf"></div><div class="input-group"><label for="falecido_cnh">CNH (se houver)</label><input type="text" id="falecido_cnh" name="falecido_cnh"></div><div class="input-group"><label for="falecido_pais">Nome Completo dos Pais</label><textarea id="falecido_pais" name="falecido_pais" rows="3" placeholder="Nome do Pai&#10;Nome da Mãe"></textarea></div><div class="input-group"><label for="falecido_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="falecido_endereco" name="falecido_endereco"></div></fieldset>
+            <fieldset><legend>Informações do Óbito e Adicionais</legend><div class="input-group"><label for="do_numero">Número da DO (Declaração de Óbito)</label><input type="text" id="do_numero" name="do_numero" required></div><div class="input-group"><label for="medico_nome">Nome do Médico</label><input type="text" id="medico_nome" name="medico_nome" required></div><div class="input-group"><label for="medico_crm">CRM do Médico</label><input type="text" id="medico_crm" name="medico_crm" required></div><div class="input-group"><label for="causa_morte">Causa(s) da Morte</label><textarea id="causa_morte" name="causa_morte" rows="3" required></textarea></div><div class="input-group"><label for="data_obito">Data do Óbito</label><input type="date" id="data_obito" name="data_obito" required></div><div class="input-group"><label for="hora_obito">Horário do Óbito</label><input type="time" id="hora_obito" name="hora_obito" required></div><div class="input-group"><label for="local_obito">Local do Óbito (Hospital, residência, etc.)</label><input type="text" id="local_obito" name="local_obito" required></div><div class="input-group"><label for="local_sepultamento">Local de Sepultamento</label><input type="text" id="local_sepultamento" name="local_sepultamento" required></div><div class="input-group"><label for="era_eleitor">Era eleitor?</label><select id="era_eleitor" name="era_eleitor" required><option value="sim">Sim</option><option value="nao">Não</option></select></div><div class="input-group"><label for="deixou_testamento">Deixou testamento?</label><select id="deixou_testamento" name="deixou_testamento" required><option value="sim">Sim</option><option value="nao" selected>Não</option></select></div><div class="input-group"><label for="deixou_bens">Deixou bens a inventariar?</label><select id="deixou_bens" name="deixou_bens" required><option value="sim">Sim</option><option value="nao">Não</option></select></div><div class="input-group"><label for="tinha_filhos">Tinha filhos?</label><select id="tinha_filhos" name="tinha_filhos" required><option value="nao">Não</option><option value="sim">Sim</option></select></div><div class="input-group hidden" id="filhos_group"><label for="nomes_filhos">Nome Completo dos Filhos</label><textarea id="nomes_filhos" name="nomes_filhos" rows="4" placeholder="Liste o nome de todos os filhos, um por linha."></textarea></div></fieldset>
+            <fieldset><legend>Dados do(a) Declarante</legend><div class="input-group"><label for="declarante_nome">Nome Completo</label><input type="text" id="declarante_nome" name="declarante_nome" required></div><div class="input-group"><label for="declarante_profissao">Profissão</label><input type="text" id="declarante_profissao" name="declarante_profissao"></div><div class="input-group"><label for="declarante_estado_civil">Estado Civil</label><select id="declarante_estado_civil" name="declarante_estado_civil"><option value="solteiro">Solteiro(a)</option><option value="casado">Casado(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option><option value="uniao_estavel">União Estável</option></select></div><div class="input-group"><label for="declarante_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="declarante_naturalidade" name="declarante_naturalidade"></div><div class="input-group"><label for="declarante_dt_nasc">Data de Nascimento</label><input type="date" id="declarante_dt_nasc" name="declarante_dt_nasc"></div><div class="input-group"><label for="declarante_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="declarante_endereco" name="declarante_endereco" required></div><div class="input-group"><label for="declarante_rg">RG</label><input type="text" id="declarante_rg" name="declarante_rg" required></div><div class="input-group"><label for="declarante_cpf">CPF</label><input type="text" id="declarante_cpf" name="declarante_cpf" required></div><div class="input-group"><label for="declarante_cnh">CNH (se houver)</label><input type="text" id="declarante_cnh" name="declarante_cnh"></div></fieldset>
             
             <fieldset>
-                <legend>Dados do(a) Declarante</legend>
-                <div class="input-group"><label for="declarante_nome">Nome Completo</label><input type="text" id="declarante_nome" name="declarante_nome" required></div>
-                <div class="input-group"><label for="declarante_profissao">Profissão</label><input type="text" id="declarante_profissao" name="declarante_profissao"></div>
-                <div class="input-group"><label for="declarante_estado_civil">Estado Civil</label><select id="declarante_estado_civil" name="declarante_estado_civil"><option value="solteiro">Solteiro(a)</option><option value="casado">Casado(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option><option value="uniao_estavel">União Estável</option></select></div>
-                <div class="input-group"><label for="declarante_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="declarante_naturalidade" name="declarante_naturalidade"></div>
-                <div class="input-group"><label for="declarante_dt_nasc">Data de Nascimento</label><input type="date" id="declarante_dt_nasc" name="declarante_dt_nasc"></div>
-                <div class="input-group"><label for="declarante_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="declarante_endereco" name="declarante_endereco" required></div>
-                <div class="input-group"><label for="declarante_rg">RG</label><input type="text" id="declarante_rg" name="declarante_rg" required></div>
-                <div class="input-group"><label for="declarante_cpf">CPF</label><input type="text" id="declarante_cpf" name="declarante_cpf" required></div>
-                <div class="input-group"><label for="declarante_cnh">CNH (se houver)</label><input type="text" id="declarante_cnh" name="declarante_cnh"></div>
-            </fieldset>
-
-            <fieldset>
                 <legend>Envio de Documentos</legend>
-                <p>Envie fotos nítidas dos documentos. Você pode selecionar vários arquivos de uma vez.</p>
-                <div class="input-group"><label for="doc_do">Declaração de Óbito (DO)</label><input type="file" id="doc_do" name="doc_do[]" accept="image/*,.pdf" required multiple><div class="file-list" id="do-list"></div></div>
-                <div class="input-group"><label for="doc_falecido">Documentos do Falecido (RG, CPF, CNH, Comprov. Endereço)</label><input type="file" id="doc_falecido" name="doc_falecido[]" accept="image/*,.pdf" required multiple><div class="file-list" id="falecido-list"></div></div>
-                <div class="input-group"><label for="doc_declarante">Documentos do Declarante (RG, CPF, CNH, Comprov. Endereço)</label><input type="file" id="doc_declarante" name="doc_declarante[]" accept="image/*,.pdf" required multiple><div class="file-list" id="declarante-list"></div></div>
+                <div class="input-group">
+                    <label for="doc_do">Declaração de Óbito (DO)</label>
+                    <input type="file" id="doc_do" name="doc_do[]" accept="image/*,.pdf" multiple>
+                    <div class="file-list" id="do-list"></div>
+                </div>
+                <div class="input-group">
+                    <label for="doc_falecido">Documentos do Falecido (RG, CPF, CNH, Comprov. Endereço)</label>
+                    <input type="file" id="doc_falecido" name="doc_falecido[]" accept="image/*,.pdf" multiple>
+                    <div class="file-list" id="falecido-list"></div>
+                </div>
+                <div class="input-group">
+                    <label for="doc_declarante">Documentos do Declarante (RG, CPF, CNH, Comprov. Endereço)</label>
+                    <input type="file" id="doc_declarante" name="doc_declarante[]" accept="image/*,.pdf" multiple>
+                    <div class="file-list" id="declarante-list"></div>
+                </div>
             </fieldset>
 
             <button type="submit">Enviar Dados para Registro</button>
@@ -79,45 +42,13 @@
     </div>
 
     <script>
-        const estadoCivilSelect = document.getElementById('falecido_estado_civil');
-        const conjugeGroup = document.getElementById('conjuge_group');
-        const temFilhosSelect = document.getElementById('tinha_filhos');
-        const filhosGroup = document.getElementById('filhos_group');
-        estadoCivilSelect.addEventListener('change', () => {
-            const selection = estadoCivilSelect.value;
-            if (selection === 'casado' || selection === 'viuvo') {
-                conjugeGroup.classList.remove('hidden');
-            } else {
-                conjugeGroup.classList.add('hidden');
-            }
-        });
-        temFilhosSelect.addEventListener('change', () => {
-            if (temFilhosSelect.value === 'sim') {
-                filhosGroup.classList.remove('hidden');
-            } else {
-                filhosGroup.classList.add('hidden');
-            }
-        });
-        function setupFileListener(inputId, listId) {
-            const fileInput = document.getElementById(inputId);
-            const fileListDisplay = document.getElementById(listId);
-            fileInput.addEventListener('change', () => {
-                fileListDisplay.innerHTML = '';
-                if (fileInput.files.length > 0) {
-                    const list = document.createElement('ul');
-                    for (const file of fileInput.files) {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
-                        list.appendChild(listItem);
-                    }
-                    fileListDisplay.appendChild(list);
-                }
-            });
-        }
+        const estadoCivilSelect = document.getElementById('falecido_estado_civil'); const conjugeGroup = document.getElementById('conjuge_group'); const temFilhosSelect = document.getElementById('tinha_filhos'); const filhosGroup = document.getElementById('filhos_group');
+        estadoCivilSelect.addEventListener('change', () => { const selection = estadoCivilSelect.value; if (selection === 'casado' || selection === 'viuvo') { conjugeGroup.classList.remove('hidden'); } else { conjugeGroup.classList.add('hidden'); } });
+        temFilhosSelect.addEventListener('change', () => { if (temFilhosSelect.value === 'sim') { filhosGroup.classList.remove('hidden'); } else { filhosGroup.classList.add('hidden'); } });
+        function setupFileListener(inputId, listId) { const fileInput = document.getElementById(inputId); const fileListDisplay = document.getElementById(listId); fileInput.addEventListener('change', () => { fileListDisplay.innerHTML = ''; if (fileInput.files.length > 0) { const list = document.createElement('ul'); for (const file of fileInput.files) { const listItem = document.createElement('li'); listItem.textContent = file.name; list.appendChild(listItem); } fileListDisplay.appendChild(list); } }); }
         setupFileListener('doc_do', 'do-list');
         setupFileListener('doc_falecido', 'falecido-list');
         setupFileListener('doc_declarante', 'declarante-list');
     </script>
-
 </body>
 </html>

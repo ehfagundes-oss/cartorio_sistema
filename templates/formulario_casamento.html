@@ -10,85 +10,19 @@
     <div class="container">
         <header><h1>Pré-Habilitação de Casamento</h1><p>Preencham os dados abaixo com atenção para agilizar o processo.</p></header>
         <form action="/enviar-casamento" method="post" enctype="multipart/form-data">
-
-            <fieldset><legend>Dados do(a) Contraente 1</legend>
-                <div class="input-group"><label for="noivo1_nome">Nome Completo</label><input type="text" id="noivo1_nome" name="noivo1_nome" required></div>
-                <div class="input-group"><label for="noivo1_cpf">CPF</label><input type="text" id="noivo1_cpf" name="noivo1_cpf" required></div>
-                <div class="input-group"><label for="noivo1_rg">RG</label><input type="text" id="noivo1_rg" name="noivo1_rg" required></div>
-                <div class="input-group"><label for="noivo1_cnh">CNH (se houver)</label><input type="text" id="noivo1_cnh" name="noivo1_cnh"></div>
-                <div class="input-group"><label for="noivo1_dt_nasc">Data de Nascimento</label><input type="date" id="noivo1_dt_nasc" name="noivo1_dt_nasc" required></div>
-                <div class="input-group"><label for="noivo1_profissao">Profissão</label><input type="text" id="noivo1_profissao" name="noivo1_profissao" required></div>
-                <div class="input-group"><label for="noivo1_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="noivo1_naturalidade" name="noivo1_naturalidade" required></div>
-                <div class="input-group"><label for="noivo1_estado_civil">Estado Civil Atual</label><select id="noivo1_estado_civil" name="noivo1_estado_civil" required><option value="solteiro">Solteiro(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option></select></div>
-                <div class="input-group"><label for="noivo1_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="noivo1_endereco" name="noivo1_endereco" required></div>
-                <div class="input-group"><label for="noivo1_pai">Nome Completo do Pai</label><input type="text" id="noivo1_pai" name="noivo1_pai"></div>
-                <div class="input-group"><label for="noivo1_mae">Nome Completo da Mãe</label><input type="text" id="noivo1_mae" name="noivo1_mae" required></div>
-                <div class="input-group"><label for="noivo1_nome_futuro">Nome que passará a usar após o casamento</label><input type="text" id="noivo1_nome_futuro" name="noivo1_nome_futuro" required></div>
-            </fieldset>
-
-            <fieldset><legend>Dados do(a) Contraente 2</legend>
-                 <div class="input-group"><label for="noivo2_nome">Nome Completo</label><input type="text" id="noivo2_nome" name="noivo2_nome" required></div>
-                <div class="input-group"><label for="noivo2_cpf">CPF</label><input type="text" id="noivo2_cpf" name="noivo2_cpf" required></div>
-                <div class="input-group"><label for="noivo2_rg">RG</label><input type="text" id="noivo2_rg" name="noivo2_rg" required></div>
-                <div class="input-group"><label for="noivo2_cnh">CNH (se houver)</label><input type="text" id="noivo2_cnh" name="noivo2_cnh"></div>
-                <div class="input-group"><label for="noivo2_dt_nasc">Data de Nascimento</label><input type="date" id="noivo2_dt_nasc" name="noivo2_dt_nasc" required></div>
-                <div class="input-group"><label for="noivo2_profissao">Profissão</label><input type="text" id="noivo2_profissao" name="noivo2_profissao" required></div>
-                <div class="input-group"><label for="noivo2_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="noivo2_naturalidade" name="noivo2_naturalidade" required></div>
-                <div class="input-group"><label for="noivo2_estado_civil">Estado Civil Atual</label><select id="noivo2_estado_civil" name="noivo2_estado_civil" required><option value="solteiro">Solteiro(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option></select></div>
-                <div class="input-group"><label for="noivo2_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="noivo2_endereco" name="noivo2_endereco" required></div>
-                <div class="input-group"><label for="noivo2_pai">Nome Completo do Pai</label><input type="text" id="noivo2_pai" name="noivo2_pai"></div>
-                <div class="input-group"><label for="noivo2_mae">Nome Completo da Mãe</label><input type="text" id="noivo2_mae" name="noivo2_mae" required></div>
-                <div class="input-group"><label for="noivo2_nome_futuro">Nome que passará a usar após o casamento</label><input type="text" id="noivo2_nome_futuro" name="noivo2_nome_futuro" required></div>
-            </fieldset>
-            
-            <fieldset><legend>Testemunhas (2)</legend>
-                <h4>Dados da Testemunha 1</h4>
-                <div class="input-group"><label for="test1_nome">Nome Completo</label><input type="text" id="test1_nome" name="test1_nome" required></div>
-                <div class="input-group"><label for="test1_cpf">CPF</label><input type="text" id="test1_cpf" name="test1_cpf" required></div>
-                <div class="input-group"><label for="test1_rg">RG</label><input type="text" id="test1_rg" name="test1_rg" required></div>
-                <div class="input-group"><label for="test1_profissao">Profissão</label><input type="text" id="test1_profissao" name="test1_profissao" required></div>
-                <div class="input-group"><label for="test1_estado_civil">Estado Civil</label><select id="test1_estado_civil" name="test1_estado_civil" required><option value="solteiro">Solteiro(a)</option><option value="casado">Casado(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option><option value="uniao_estavel">União Estável</option></select></div>
-                <div class="input-group"><label for="test1_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="test1_endereco" name="test1_endereco" required></div>
-                <hr style="margin: 30px 0;">
-                <h4>Dados da Testemunha 2</h4>
-                <div class="input-group"><label for="test2_nome">Nome Completo</label><input type="text" id="test2_nome" name="test2_nome" required></div>
-                <div class="input-group"><label for="test2_cpf">CPF</label><input type="text" id="test2_cpf" name="test2_cpf" required></div>
-                <div class="input-group"><label for="test2_rg">RG</label><input type="text" id="test2_rg" name="test2_rg" required></div>
-                <div class="input-group"><label for="test2_profissao">Profissão</label><input type="text" id="test2_profissao" name="test2_profissao" required></div>
-                <div class="input-group"><label for="test2_estado_civil">Estado Civil</label><select id="test2_estado_civil" name="test2_estado_civil" required><option value="solteiro">Solteiro(a)</option><option value="casado">Casado(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option><option value="uniao_estavel">União Estável</option></select></div>
-                <div class="input-group"><label for="test2_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="test2_endereco" name="test2_endereco" required></div>
-            </fieldset>
+            <fieldset><legend>Dados do(a) Contraente 1</legend><div class="input-group"><label for="noivo1_nome">Nome Completo</label><input type="text" id="noivo1_nome" name="noivo1_nome" required></div><div class="input-group"><label for="noivo1_cpf">CPF</label><input type="text" id="noivo1_cpf" name="noivo1_cpf" required></div><div class="input-group"><label for="noivo1_rg">RG</label><input type="text" id="noivo1_rg" name="noivo1_rg" required></div><div class="input-group"><label for="noivo1_cnh">CNH (se houver)</label><input type="text" id="noivo1_cnh" name="noivo1_cnh"></div><div class="input-group"><label for="noivo1_dt_nasc">Data de Nascimento</label><input type="date" id="noivo1_dt_nasc" name="noivo1_dt_nasc" required></div><div class="input-group"><label for="noivo1_profissao">Profissão</label><input type="text" id="noivo1_profissao" name="noivo1_profissao" required></div><div class="input-group"><label for="noivo1_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="noivo1_naturalidade" name="noivo1_naturalidade" required></div><div class="input-group"><label for="noivo1_estado_civil">Estado Civil Atual</label><select id="noivo1_estado_civil" name="noivo1_estado_civil" required><option value="solteiro">Solteiro(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option></select></div><div class="input-group"><label for="noivo1_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="noivo1_endereco" name="noivo1_endereco" required></div><div class="input-group"><label for="noivo1_pai">Nome Completo do Pai</label><input type="text" id="noivo1_pai" name="noivo1_pai"></div><div class="input-group"><label for="noivo1_mae">Nome Completo da Mãe</label><input type="text" id="noivo1_mae" name="noivo1_mae" required></div><div class="input-group"><label for="noivo1_nome_futuro">Nome que passará a usar após o casamento</label><input type="text" id="noivo1_nome_futuro" name="noivo1_nome_futuro" required></div></fieldset>
+            <fieldset><legend>Dados do(a) Contraente 2</legend><div class="input-group"><label for="noivo2_nome">Nome Completo</label><input type="text" id="noivo2_nome" name="noivo2_nome" required></div><div class="input-group"><label for="noivo2_cpf">CPF</label><input type="text" id="noivo2_cpf" name="noivo2_cpf" required></div><div class="input-group"><label for="noivo2_rg">RG</label><input type="text" id="noivo2_rg" name="noivo2_rg" required></div><div class="input-group"><label for="noivo2_cnh">CNH (se houver)</label><input type="text" id="noivo2_cnh" name="noivo2_cnh"></div><div class="input-group"><label for="noivo2_dt_nasc">Data de Nascimento</label><input type="date" id="noivo2_dt_nasc" name="noivo2_dt_nasc" required></div><div class="input-group"><label for="noivo2_profissao">Profissão</label><input type="text" id="noivo2_profissao" name="noivo2_profissao" required></div><div class="input-group"><label for="noivo2_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="noivo2_naturalidade" name="noivo2_naturalidade" required></div><div class="input-group"><label for="noivo2_estado_civil">Estado Civil Atual</label><select id="noivo2_estado_civil" name="noivo2_estado_civil" required><option value="solteiro">Solteiro(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option></select></div><div class="input-group"><label for="noivo2_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="noivo2_endereco" name="noivo2_endereco" required></div><div class="input-group"><label for="noivo2_pai">Nome Completo do Pai</label><input type="text" id="noivo2_pai" name="noivo2_pai"></div><div class="input-group"><label for="noivo2_mae">Nome Completo da Mãe</label><input type="text" id="noivo2_mae" name="noivo2_mae" required></div><div class="input-group"><label for="noivo2_nome_futuro">Nome que passará a usar após o casamento</label><input type="text" id="noivo2_nome_futuro" name="noivo2_nome_futuro" required></div></fieldset>
+            <fieldset><legend>Testemunhas (2)</legend><h4>Dados da Testemunha 1</h4><div class="input-group"><label for="test1_nome">Nome Completo</label><input type="text" id="test1_nome" name="test1_nome" required></div><div class="input-group"><label for="test1_cpf">CPF</label><input type="text" id="test1_cpf" name="test1_cpf" required></div><div class="input-group"><label for="test1_rg">RG</label><input type="text" id="test1_rg" name="test1_rg" required></div><div class="input-group"><label for="test1_profissao">Profissão</label><input type="text" id="test1_profissao" name="test1_profissao" required></div><div class="input-group"><label for="test1_estado_civil">Estado Civil</label><select id="test1_estado_civil" name="test1_estado_civil" required><option value="solteiro">Solteiro(a)</option><option value="casado">Casado(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option><option value="uniao_estavel">União Estável</option></select></div><div class="input-group"><label for="test1_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="test1_endereco" name="test1_endereco" required></div><hr style="margin: 30px 0;"><h4>Dados da Testemunha 2</h4><div class="input-group"><label for="test2_nome">Nome Completo</label><input type="text" id="test2_nome" name="test2_nome" required></div><div class="input-group"><label for="test2_cpf">CPF</label><input type="text" id="test2_cpf" name="test2_cpf" required></div><div class="input-group"><label for="test2_rg">RG</label><input type="text" id="test2_rg" name="test2_rg" required></div><div class="input-group"><label for="test2_profissao">Profissão</label><input type="text" id="test2_profissao" name="test2_profissao" required></div><div class="input-group"><label for="test2_estado_civil">Estado Civil</label><select id="test2_estado_civil" name="test2_estado_civil" required><option value="solteiro">Solteiro(a)</option><option value="casado">Casado(a)</option><option value="divorciado">Divorciado(a)</option><option value="viuvo">Viúvo(a)</option><option value="uniao_estavel">União Estável</option></select></div><div class="input-group"><label for="test2_endereco">Endereço (Rua, Nº, Bairro, CEP, Cidade)</label><input type="text" id="test2_endereco" name="test2_endereco" required></div></fieldset>
 
             <fieldset>
                 <legend>Envio de Documentos</legend>
-                <p>Envie fotos nítidas dos documentos. Você pode selecionar vários arquivos de uma vez para cada campo (ex: frente e verso).</p>
                 <h4>Contraente 1</h4>
-                <div class="input-group"><label for="doc_noivo1_id">Documento de Identidade (RG/CPF/CNH)</label><input type="file" id="doc_noivo1_id" name="doc_noivo1_id[]" accept="image/*,.pdf" required multiple><div class="file-list" id="noivo1-id-list"></div></div>
-                <div class="input-group"><label for="doc_noivo1_end">Comprovante de Endereço</label><input type="file" id="doc_noivo1_end" name="doc_noivo1_end[]" accept="image/*,.pdf" required multiple><div class="file-list" id="noivo1-end-list"></div></div>
+                <div class="input-group"><label for="doc_noivo1_id">Documento de Identidade</label><input type="file" id="doc_noivo1_id" name="doc_noivo1_id[]" multiple><div class="file-list" id="noivo1-id-list"></div></div>
+                <div class="input-group"><label for="doc_noivo1_end">Comprovante de Endereço</label><input type="file" id="doc_noivo1_end" name="doc_noivo1_end[]" multiple><div class="file-list" id="noivo1-end-list"></div></div>
                 <hr><h4>Contraente 2</h4>
-                <div class="input-group"><label for="doc_noivo2_id">Documento de Identidade (RG/CPF/CNH)</label><input type="file" id="doc_noivo2_id" name="doc_noivo2_id[]" accept="image/*,.pdf" required multiple><div class="file-list" id="noivo2-id-list"></div></div>
-                <div class="input-group"><label for="doc_noivo2_end">Comprovante de Endereço</label><input type="file" id="doc_noivo2_end" name="doc_noivo2_end[]" accept="image/*,.pdf" required multiple><div class="file-list" id="noivo2-end-list"></div></div>
+                <div class="input-group"><label for="doc_noivo2_id">Documento de Identidade</label><input type="file" id="doc_noivo2_id" name="doc_noivo2_id[]" multiple><div class="file-list" id="noivo2-id-list"></div></div>
+                <div class="input-group"><label for="doc_noivo2_end">Comprovante de Endereço</label><input type="file" id="doc_noivo2_end" name="doc_noivo2_end[]" multiple><div class="file-list" id="noivo2-end-list"></div></div>
                 <hr><h4>Testemunhas</h4>
-                <div class="input-group"><label for="doc_test1_id">Documento de Identidade (Testemunha 1)</label><input type="file" id="doc_test1_id" name="doc_test1_id[]" accept="image/*,.pdf" required multiple><div class="file-list" id="test1-id-list"></div></div>
-                <div class="input-group"><label for="doc_test1_end">Comprovante de Endereço (Testemunha 1)</label><input type="file" id="doc_test1_end" name="doc_test1_end[]" accept="image/*,.pdf" required multiple><div class="file-list" id="test1-end-list"></div></div>
-                <div class="input-group"><label for="doc_test2_id">Documento de Identidade (Testemunha 2)</label><input type="file" id="doc_test2_id" name="doc_test2_id[]" accept="image/*,.pdf" required multiple><div class="file-list" id="test2-id-list"></div></div>
-                <div class="input-group"><label for="doc_test2_end">Comprovante de Endereço (Testemunha 2)</label><input type="file" id="doc_test2_end" name="doc_test2_end[]" accept="image/*,.pdf" required multiple><div class="file-list" id="test2-end-list"></div></div>
-            </fieldset>
-            
-            <button type="submit">Enviar Dados para Habilitação</button>
-        </form>
-    </div>
-
-    <script>
-        function setupFileListener(inputId, listId) { const fileInput = document.getElementById(inputId); const fileListDisplay = document.getElementById(listId); fileInput.addEventListener('change', () => { fileListDisplay.innerHTML = ''; if (fileInput.files.length > 0) { const list = document.createElement('ul'); for (const file of fileInput.files) { const listItem = document.createElement('li'); listItem.textContent = file.name; list.appendChild(listItem); } fileListDisplay.appendChild(list); } }); }
-        setupFileListener('doc_noivo1_id', 'noivo1-id-list');
-        setupFileListener('doc_noivo1_end', 'noivo1-end-list');
-        setupFileListener('doc_noivo2_id', 'noivo2-id-list');
-        setupFileListener('doc_noivo2_end', 'noivo2-end-list');
-        setupFileListener('doc_test1_id', 'test1-id-list');
-        setupFileListener('doc_test1_end', 'test1-end-list');
-        setupFileListener('doc_test2_id', 'test2-id-list');
-        setupFileListener('doc_test2_end', 'test2-end-list');
-    </script>
-</body>
-</html>
+                <div class="input-group"><label for="doc_test1_id">Documento de Identidade (Testemunha 1)</label><input type="file" id="doc_test1_id" name="doc_test1_id[]" multiple><div class="file-list" id="test1-id-list"></div></div>
+                <div class="input-group"><label for="doc_test1_end">Comprovante de Endereço (Testemunha 1)</label><input type="file" id="doc_test1_end" name="doc_test1_end[]" multiple><div class="file-list" id="test1-end-list"></div></div>
+                <div class="input-group"><label for="doc_test2_id">Documento de Identidade (Testemunha 2)</label><input type="file" id="doc_test2_id" name="doc_test2_id[]" multiple><div class="file-list" id="

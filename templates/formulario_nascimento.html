@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
 </head>
 <body>
-
     <div class="container">
         <header>
             <h1>Pré-Registro de Nascimento</h1>
@@ -15,56 +14,20 @@
         </header>
 
         <form action="/enviar-nascimento" method="post" enctype="multipart/form-data">
-
-            <fieldset>
-                <legend>Dados do Nascido</legend>
-                <div class="input-group">
-                    <label for="nome_nascido">Nome Completo do Nascido</label>
-                    <input type="text" id="nome_nascido" name="nome_nascido" required>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Dados da Mãe</legend>
-                <div class="input-group"><label for="mae_nome">Nome Completo</label><input type="text" id="mae_nome" name="mae_nome" required></div>
-                <div class="input-group"><label for="mae_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="mae_naturalidade" name="mae_naturalidade" placeholder="Ex: Curitiba - PR" required></div>
-                <div class="input-group"><label for="mae_estado_civil">Estado Civil</label><select id="mae_estado_civil" name="mae_estado_civil" required><option value="solteira">Solteira</option><option value="casada">Casada</option><option value="divorciada">Divorciada</option><option value="viuva">Viúva</option><option value="uniao_estavel">União Estável</option></select></div>
-                <div class="input-group"><label for="mae_profissao">Profissão</label><input type="text" id="mae_profissao" name="mae_profissao" required></div>
-                <div class="input-group"><label for="mae_endereco">Endereço (Rua, Nº, Bairro)</label><input type="text" id="mae_endereco" name="mae_endereco" required></div>
-                <div class="input-group"><label for="mae_cep">CEP</label><input type="text" id="mae_cep" name="mae_cep" required></div>
-                <div class="input-group"><label for="mae_telefone">Telefone (com DDD)</label><input type="tel" id="mae_telefone" name="mae_telefone" placeholder="(XX) XXXXX-XXXX" required></div>
-                <div class="input-group"><label for="mae_rg">RG</label><input type="text" id="mae_rg" name="mae_rg" required></div>
-                <div class="input-group"><label for="mae_cpf">CPF</label><input type="text" id="mae_cpf" name="mae_cpf" required></div>
-                <div class="input-group"><label for="mae_cnh">CNH (se houver)</label><input type="text" id="mae_cnh" name="mae_cnh"></div>
-                <div class="input-group"><label for="mae_avos">Nome Completo dos Pais (Avós Maternos)</label><textarea id="mae_avos" name="mae_avos" rows="3" placeholder="Nome do Avô Materno&#10;Nome da Avó Materna" required></textarea></div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Dados do Pai</legend>
-                <div class="input-group"><label for="pai_nome">Nome Completo</label><input type="text" id="pai_nome" name="pai_nome" required></div>
-                <div class="input-group"><label for="pai_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="pai_naturalidade" name="pai_naturalidade" placeholder="Ex: Apucarana - PR" required></div>
-                <div class="input-group"><label for="pai_estado_civil">Estado Civil</label><select id="pai_estado_civil" name="pai_estado_civil" required><option value="solteiro">Solteiro</option><option value="casado">Casado</option><option value="divorciado">Divorciado</option><option value="viuvo">Viúvo</option><option value="uniao_estavel">União Estável</option></select></div>
-                <div class="input-group"><label for="pai_profissao">Profissão</label><input type="text" id="pai_profissao" name="pai_profissao" required></div>
-                <div class="input-group"><label for="pai_endereco">Endereço (Rua, Nº, Bairro)</label><input type="text" id="pai_endereco" name="pai_endereco" required></div>
-                <div class="input-group"><label for="pai_cep">CEP</label><input type="text" id="pai_cep" name="pai_cep" required></div>
-                <div class="input-group"><label for="pai_telefone">Telefone (com DDD)</label><input type="tel" id="pai_telefone" name="pai_telefone" placeholder="(XX) XXXXX-XXXX" required></div>
-                <div class="input-group"><label for="pai_rg">RG</label><input type="text" id="pai_rg" name="pai_rg" required></div>
-                <div class="input-group"><label for="pai_cpf">CPF</label><input type="text" id="pai_cpf" name="pai_cpf" required></div>
-                <div class="input-group"><label for="pai_cnh">CNH (se houver)</label><input type="text" id="pai_cnh" name="pai_cnh"></div>
-                <div class="input-group"><label for="pai_avos">Nome Completo dos Pais (Avós Paternos)</label><textarea id="pai_avos" name="pai_avos" rows="3" placeholder="Nome do Avô Paterno&#10;Nome da Avó Paterna" required></textarea></div>
-            </fieldset>
-
+            <fieldset><legend>Dados do Nascido</legend><div class="input-group"><label for="nome_nascido">Nome Completo do Nascido</label><input type="text" id="nome_nascido" name="nome_nascido" required></div></fieldset>
+            <fieldset><legend>Dados da Mãe</legend><div class="input-group"><label for="mae_nome">Nome Completo</label><input type="text" id="mae_nome" name="mae_nome" required></div><div class="input-group"><label for="mae_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="mae_naturalidade" name="mae_naturalidade" placeholder="Ex: Curitiba - PR" required></div><div class="input-group"><label for="mae_estado_civil">Estado Civil</label><select id="mae_estado_civil" name="mae_estado_civil" required><option value="solteira">Solteira</option><option value="casada">Casada</option><option value="divorciada">Divorciada</option><option value="viuva">Viúva</option><option value="uniao_estavel">União Estável</option></select></div><div class="input-group"><label for="mae_profissao">Profissão</label><input type="text" id="mae_profissao" name="mae_profissao" required></div><div class="input-group"><label for="mae_endereco">Endereço (Rua, Nº, Bairro)</label><input type="text" id="mae_endereco" name="mae_endereco" required></div><div class="input-group"><label for="mae_cep">CEP</label><input type="text" id="mae_cep" name="mae_cep" required></div><div class="input-group"><label for="mae_telefone">Telefone (com DDD)</label><input type="tel" id="mae_telefone" name="mae_telefone" placeholder="(XX) XXXXX-XXXX" required></div><div class="input-group"><label for="mae_rg">RG</label><input type="text" id="mae_rg" name="mae_rg" required></div><div class="input-group"><label for="mae_cpf">CPF</label><input type="text" id="mae_cpf" name="mae_cpf" required></div><div class="input-group"><label for="mae_cnh">CNH (se houver)</label><input type="text" id="mae_cnh" name="mae_cnh"></div><div class="input-group"><label for="mae_avos">Nome Completo dos Pais (Avós Maternos)</label><textarea id="mae_avos" name="mae_avos" rows="3" placeholder="Nome do Avô Materno&#10;Nome da Avó Materna" required></textarea></div></fieldset>
+            <fieldset><legend>Dados do Pai</legend><div class="input-group"><label for="pai_nome">Nome Completo</label><input type="text" id="pai_nome" name="pai_nome" required></div><div class="input-group"><label for="pai_naturalidade">Naturalidade (Cidade - UF)</label><input type="text" id="pai_naturalidade" name="pai_naturalidade" placeholder="Ex: Apucarana - PR" required></div><div class="input-group"><label for="pai_estado_civil">Estado Civil</label><select id="pai_estado_civil" name="pai_estado_civil" required><option value="solteiro">Solteiro</option><option value="casado">Casado</option><option value="divorciado">Divorciado</option><option value="viuvo">Viúvo</option><option value="uniao_estavel">União Estável</option></select></div><div class="input-group"><label for="pai_profissao">Profissão</label><input type="text" id="pai_profissao" name="pai_profissao" required></div><div class="input-group"><label for="pai_endereco">Endereço (Rua, Nº, Bairro)</label><input type="text" id="pai_endereco" name="pai_endereco" required></div><div class="input-group"><label for="pai_cep">CEP</label><input type="text" id="pai_cep" name="pai_cep" required></div><div class="input-group"><label for="pai_telefone">Telefone (com DDD)</label><input type="tel" id="pai_telefone" name="pai_telefone" placeholder="(XX) XXXXX-XXXX" required></div><div class="input-group"><label for="pai_rg">RG</label><input type="text" id="pai_rg" name="pai_rg" required></div><div class="input-group"><label for="pai_cpf">CPF</label><input type="text" id="pai_cpf" name="pai_cpf" required></div><div class="input-group"><label for="pai_cnh">CNH (se houver)</label><input type="text" id="pai_cnh" name="pai_cnh"></div><div class="input-group"><label for="pai_avos">Nome Completo dos Pais (Avós Paternos)</label><textarea id="pai_avos" name="pai_avos" rows="3" placeholder="Nome do Avô Paterno&#10;Nome da Avó Paterna" required></textarea></div></fieldset>
+            
             <fieldset>
                 <legend>Envio de Documentos</legend>
-                <p>Por favor, envie fotos nítidas ou cópias digitalizadas dos seguintes documentos.</p>
-                
+                <p>Anexe os documentos necessários (frente e verso, se aplicável). Você pode selecionar vários arquivos de uma vez.</p>
                 <div class="input-group">
                     <label for="doc_dnv">Declaração de Nascido Vivo (DNV)</label>
                     <input type="file" id="doc_dnv" name="doc_dnv[]" accept="image/*,.pdf" multiple>
                     <div class="file-list" id="dnv-list"></div>
                 </div>
                 <div class="input-group">
-                    <label for="doc_identidade">RG/CPF ou CNH dos pais (frente e verso)</label>
+                    <label for="doc_identidade">RG/CPF ou CNH dos pais</label>
                     <input type="file" id="doc_identidade" name="doc_identidade[]" accept="image/*,.pdf" multiple>
                     <div class="file-list" id="identidade-list"></div>
                 </div>
@@ -76,16 +39,8 @@
             </fieldset>
 
             <button type="submit">Enviar Dados para Registro</button>
-
         </form>
     </div>
 
     <script>
-        function setupFileListener(inputId, listId) { const fileInput = document.getElementById(inputId); const fileListDisplay = document.getElementById(listId); fileInput.addEventListener('change', () => { fileListDisplay.innerHTML = ''; if (fileInput.files.length > 0) { const list = document.createElement('ul'); for (const file of fileInput.files) { const listItem = document.createElement('li'); listItem.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)'; list.appendChild(listItem); } fileListDisplay.appendChild(list); } }); }
-        setupFileListener('doc_dnv', 'dnv-list');
-        setupFileListener('doc_identidade', 'identidade-list');
-        setupFileListener('doc_endereco', 'endereco-list');
-    </script>
-
-</body>
-</html>
+        function setupFileListener(inputId, listId) { const fileInput = document.getElementById(inputId); const fileListDisplay = document.getElementById(listId); fileInput.addEventListener('change', () => { fileListDisplay.innerHTML = ''; if (fileInput.files.length > 0) { const list = document.createElement('ul'); for (const file of fileInput.files) { const listItem = document.createElement('li'); listItem.textContent = file.name; list.appendChild(listItem
