@@ -1,7 +1,7 @@
 import os
 import uuid
 from datetime import datetime
-from flask import Flask, render_template, request, flash, url_for, send_from_directory
+from flask import Flask, render_template, request, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 from flask_mail import Mail, Message
@@ -70,21 +70,69 @@ def enviar_email_registro(titulo, dados_formulario, arquivos_salvos):
         
         html_body = f"<h1>{titulo}</h1>"
         html_body += "<h2>Dados do Formulário:</h2>"
-        html_body += "<table border='1' cellpadding='5' style='border-collapse: collapse;'>"
+        html_body += "<table border='1' cellpadding='5' style='border-collapse: collapse; width: 100%;'>"
         for chave, valor in dados_formulario.items():
-            html_body += f"<tr><td style='background-color: #f2f2f2;'><strong>{chave.replace('_', ' ').title()}</strong></td><td>{valor}</td></tr>"
+            html_body += f"<tr><td style='background-color: #f2f2f2; width: 30%;'><strong>{chave.replace('_', ' ').title()}</strong></td><td>{valor}</td></tr>"
         html_body += "</table>"
         
-        if arquivos_salvos:
+        if any(arquivos_salvos.values()):
             html_body += "<h2>Links para os Documentos:</h2><ul>"
-            for subpasta, nomes in arquivos_salvos.items():
+            for tipo_doc, nomes in arquivos_salvos.items():
                 for nome_arquivo in nomes:
-                    link = url_for('uploaded_file', subpasta=subpasta, filename=nome_arquivo, _external=True)
-                    html_body += f"<li><a href='{link}'>{subpasta.replace('_', ' ').title()} - Arquivo</a></li>"
+                    link = url_for('uploaded_file', subpasta=tipo_doc.split('_')[0], filename=nome_arquivo, _external=True)
+                    html_body += f"<li><a href='{link}'>{tipo_doc.replace('_', ' ').title()} - Arquivo</a></li>"
             html_body += "</ul>"
             
         msg.html = html_body
         mail.send(msg)
         print(f"E-mail '{titulo}' enviado para {destinatario}")
     except Exception as e:
-        print(f"!!!!!!!!!! FALHA AO ENVIAR E-MAIL !!!!!
+        print(f"FALHA AO ENVIAR E-MAIL: {e}")
+
+# --- ROTAS DE PROCESSAMENTO ---
+@app.route('/enviar-nascimento', methods=['POST'])
+def receber_nascimento():
+    dados = dict(request.form)
+    arquivos = {
+        'nascimento': salvar_arquivos(request.files.getlist('doc_dnv[]'), 'nascimento'),
+        'nascimento': salvar_arquivos(request.files.getlist('doc_identidade[]'), 'nascimento'),
+        'nascimento': salvar_arquivos(request.files.getlist('doc_endereco[]'), 'nascimento')
+    }
+    enviar_email_registro("Novo Pré-Registro de Nascimento", dados, arquivos)
+    return "<h1>Formulário enviado com sucesso! Você receberá os dados por e-mail.</h1>"
+
+@app.route('/enviar-obito', methods=['POST'])
+def receber_obito():
+    dados = dict(request.form)
+    arquivos = {
+        'obito': salvar_arquivos(request.files.getlist('doc_do[]'), 'obito'),
+        'obito': salvar_arquivos(request.files.getlist('doc_falecido[]'), 'obito'),
+        'obito': salvar_arquivos(request.files.getlist('doc_declarante[]'), 'obito')
+    }
+    enviar_email_registro("Novo Pré-Registro de Óbito", dados, arquivos)
+    return "<h1>Formulário enviado com sucesso! Você receberá os dados por e-mail.</h1>"
+
+@app.route('/enviar-casamento', methods=['POST'])
+def receber_casamento():
+    dados = dict(request.form)
+    arquivos = {
+        'casamento': salvar_arquivos(request.files.getlist('doc_noivo1_id[]'), 'casamento'),
+        'casamento': salvar_arquivos(request.files.getlist('doc_noivo1_end[]'), 'casamento'),
+        'casamento': salvar_arquivos(request.files.getlist('doc_noivo2_id[]'), 'casamento'),
+        'casamento': salvar_arquivos(request.files.getlist('doc_noivo2_end[]'), 'casamento'),
+        'casamento': salvar_arquivos(request.files.getlist('doc_test1_id[]'), 'casamento'),
+        'casamento': salvar_arquivos(request.files.getlist('doc_test1_end[]'), 'casamento'),
+        'casamento': salvar_arquivos(request.files.getlist('doc_test2_id[]'), 'casamento'),
+        'casamento': salvar_arquivos(request.files.getlist('doc_test2_end[]'), 'casamento')
+    }
+    enviar_email_registro("Nova Habilitação de Casamento", dados, arquivos)
+    return "<h1>Formulário enviado com sucesso! Você receberá os dados por e-mail.</h1>"
+
+# Rota para servir os arquivos enviados
+@app.route('/uploads/<path:subpasta>/<path:filename>')
+def uploaded_file(subpasta, filename):
+    caminho = os.path.join(app.config['UPLOAD_FOLDER'], subpasta)
+    return send_from_directory(caminho, filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)
