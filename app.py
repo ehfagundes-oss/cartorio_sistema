@@ -94,4 +94,47 @@ def enviar_email_registro(titulo, dados_formulario, arquivos_salvos):
 # --- ROTAS DE PROCESSAMENTO ---
 @app.route('/enviar-nascimento', methods=['POST'])
 def receber_nascimento():
-    dados
+    dados = dict(request.form)
+    arquivos = {
+        'Nascimento_DNV': salvar_arquivos(request.files.getlist('doc_dnv[]'), 'nascimento'),
+        'Nascimento_Identidade_Pais': salvar_arquivos(request.files.getlist('doc_identidade[]'), 'nascimento'),
+        'Nascimento_Endereco': salvar_arquivos(request.files.getlist('doc_endereco[]'), 'nascimento')
+    }
+    enviar_email_registro("Novo Pré-Registro de Nascimento", dados, arquivos)
+    return "<h1>Formulário enviado com sucesso! Por favor avise um atendente</h1>"
+
+@app.route('/enviar-obito', methods=['POST'])
+def receber_obito():
+    dados = dict(request.form)
+    arquivos = {
+        'Obito_DO': salvar_arquivos(request.files.getlist('doc_do[]'), 'obito'),
+        'Obito_Documentos_Falecido': salvar_arquivos(request.files.getlist('doc_falecido[]'), 'obito'),
+        'Obito_Documentos_Declarante': salvar_arquivos(request.files.getlist('doc_declarante[]'), 'obito')
+    }
+    enviar_email_registro("Novo Pré-Registro de Óbito", dados, arquivos)
+    return "<h1>Formulário enviado com sucesso! Por favor avise um atendente</h1>"
+
+@app.route('/enviar-casamento', methods=['POST'])
+def receber_casamento():
+    dados = dict(request.form)
+    arquivos = {
+        'Casamento_Noivo1_ID': salvar_arquivos(request.files.getlist('doc_noivo1_id[]'), 'casamento'),
+        'Casamento_Noivo1_Endereco': salvar_arquivos(request.files.getlist('doc_noivo1_end[]'), 'casamento'),
+        'Casamento_Noivo2_ID': salvar_arquivos(request.files.getlist('doc_noivo2_id[]'), 'casamento'),
+        'Casamento_Noivo2_Endereco': salvar_arquivos(request.files.getlist('doc_noivo2_end[]'), 'casamento'),
+        'Casamento_Testemunha1_ID': salvar_arquivos(request.files.getlist('doc_test1_id[]'), 'casamento'),
+        'Casamento_Testemunha1_Endereco': salvar_arquivos(request.files.getlist('doc_test1_end[]'), 'casamento'),
+        'Casamento_Testemunha2_ID': salvar_arquivos(request.files.getlist('doc_test2_id[]'), 'casamento'),
+        'Casamento_Testemunha2_Endereco': salvar_arquivos(request.files.getlist('doc_test2_end[]'), 'casamento')
+    }
+    enviar_email_registro("Nova Habilitação de Casamento", dados, arquivos)
+    return "<h1>Formulário enviado com sucesso! Por favor avise um atendente</h1>"
+
+# Rota para servir os arquivos enviados
+@app.route('/uploads/<path:subpasta>/<path:filename>')
+def uploaded_file(subpasta, filename):
+    caminho = os.path.join(app.config['UPLOAD_FOLDER'], subpasta)
+    return send_from_directory(caminho, filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)
