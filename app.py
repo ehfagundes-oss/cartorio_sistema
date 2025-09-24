@@ -66,4 +66,60 @@ def enviar_email_registro(titulo, dados_formulario, arquivos_salvos):
             print("ERRO: E-mail do destinatário não configurado.")
             return
 
-        msg = Message(titulo, recipients=
+        msg = Message(titulo, recipients=[destinatario])
+        
+        html_body = f"<h1>{titulo}</h1>"
+        html_body += "<h2>Dados do Formulário:</h2>"
+        html_body += "<table border='1' cellpadding='5' style='border-collapse: collapse; width: 100%;'>"
+        for chave, valor in dados_formulario.items():
+            html_body += f"<tr><td style='background-color: #f2f2f2; width: 30%;'><strong>{chave.replace('_', ' ').title()}</strong></td><td>{valor}</td></tr>"
+        html_body += "</table>"
+        
+        if any(arquivos_salvos.values()):
+            html_body += "<h2>Links para os Documentos:</h2><ul>"
+            for tipo_doc, nomes in arquivos_salvos.items():
+                if nomes:
+                    subpasta = tipo_doc.split('_')[0].lower()
+                    for nome_arquivo in nomes:
+                        link = url_for('uploaded_file', subpasta=subpasta, filename=nome_arquivo, _external=True)
+                        html_body += f"<li><a href='{link}'>{tipo_doc.replace('_', ' ').title()}</a></li>"
+            html_body += "</ul>"
+            
+        msg.html = html_body
+        mail.send(msg)
+        print(f"E-mail '{titulo}' enviado para {destinatario}")
+    except Exception as e:
+        print(f"FALHA AO ENVIAR E-MAIL: {e}")
+
+# --- ROTAS DE PROCESSAMENTO ---
+@app.route('/enviar-nascimento', methods=['POST'])
+def receber_nascimento():
+    dados = dict(request.form)
+    arquivos = {
+        'Nascimento_DNV': salvar_arquivos(request.files.getlist('doc_dnv[]'), 'nascimento'),
+        'Nascimento_Identidade_Pais': salvar_arquivos(request.files.getlist('doc_identidade[]'), 'nascimento'),
+        'Nascimento_Endereco': salvar_arquivos(request.files.getlist('doc_endereco[]'), 'nascimento')
+    }
+    enviar_email_registro("Novo Pré-Registro de Nascimento", dados, arquivos)
+    return "<h1>Formulário enviado com sucesso! Você receberá os dados por e-mail.</h1>"
+
+@app.route('/enviar-obito', methods=['POST'])
+def receber_obito():
+    dados = dict(request.form)
+    arquivos = {
+        'Obito_DO': salvar_arquivos(request.files.getlist('doc_do[]'), 'obito'),
+        'Obito_Documentos_Falecido': salvar_arquivos(request.files.getlist('doc_falecido[]'), 'obito'),
+        'Obito_Documentos_Declarante': salvar_arquivos(request.files.getlist('doc_declarante[]'), 'obito')
+    }
+    enviar_email_registro("Novo Pré-Registro de Óbito", dados, arquivos)
+    return "<h1>Formulário enviado com sucesso! Você receberá os dados por e-mail.</h1>"
+
+@app.route('/enviar-casamento', methods=['POST'])
+def receber_casamento():
+    dados = dict(request.form)
+    arquivos = {
+        'Casamento_Noivo1_ID': salvar_arquivos(request.files.getlist('doc_noivo1_id[]'), 'casamento'),
+        'Casamento_Noivo1_Endereco': salvar_arquivos(request.files.getlist('doc_noivo1_end[]'), 'casamento'),
+        'Casamento_Noivo2_ID': salvar_arquivos(request.files.getlist('doc_noivo2_id[]'), 'casamento'),
+        'Casamento_Noivo2_Endereco': salvar_arquivos(request.files.getlist('doc_noivo2_end[]'), 'casamento'),
+        'Casamento_Testemunha1_ID': salvar_arquivos(request.files.getlist('
