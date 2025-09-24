@@ -30,35 +30,8 @@ def close_db(exception):
     if db is not None: db.close()
 
 def init_db():
-    # Este código está correto, não precisa ser executado novamente
-    pass
-
-# --- LÓGICA DE AUTENTICAÇÃO ---
-def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if 'logged_in' not in session:
-            return redirect(url_for('login'))
-        return f(*args, **kwargs)
-    return decorated_function
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        if request.form['username'] == 'admin' and request.form['password'] == 'senha123':
-            session['logged_in'] = True
-            return redirect(url_for('admin_panel'))
-        else:
-            flash('Usuário ou senha inválidos.')
-    return render_template('login.html')
-
-@app.route('/logout')
-def logout():
-    session.pop('logged_in', None)
-    return redirect(url_for('login'))
-
-# --- ROTAS DA INTERFACE ---
-@app.route('/')
-def homepage(): return render_template('homepage.html')
-@app.route('/nascimento')
-def form_nascimento(): return render_template('formulario_nascimento.
+    # ... código da função init_db sem alterações ...
+    schema = [
+        "DROP TABLE IF EXISTS nascimentos;", "DROP TABLE IF EXISTS obitos;", "DROP TABLE IF EXISTS casamentos;",
+        """CREATE TABLE nascimentos (id SERIAL PRIMARY KEY, data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP, nome_nascido TEXT, mae_nome TEXT, mae_naturalidade TEXT, mae_estado_civil TEXT, mae_profissao TEXT, mae_endereco TEXT, mae_cep TEXT, mae_telefone TEXT, mae_rg TEXT, mae_cpf TEXT, mae_cnh TEXT, mae_avos TEXT, pai_nome TEXT, pai_naturalidade TEXT, pai_estado_civil TEXT, pai_profissao TEXT, pai_endereco TEXT, pai_cep TEXT, pai_telefone TEXT, pai_rg TEXT, pai_cpf TEXT, pai_cnh TEXT, pai_avos TEXT, arquivos_dnv TEXT, arquivos_identidade TEXT, arquivos_endereco TEXT);""",
+        """CREATE TABLE obitos (id SERIAL PRIMARY KEY, data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP, falecido_nome TEXT, falecido_dt_nasc TEXT, falecido_naturalidade TEXT, falecido_estado_civil TEXT, falecido_conjuge TEXT, falecido_profissao TEXT, falecido_rg TEXT, falecido_cpf TEXT, falecido_cnh TEXT, falecido_pais TEXT, falecido_endereco TEXT, do_numero TEXT, medico_nome TEXT, medico_crm TEXT, causa_morte TEXT, data_obito TEXT, hora_obito TEXT, local_obito TEXT, local_sepultamento TEXT, era_eleitor TEXT, deixou_testamento TEXT, deixou_bens TEXT, tinha_filhos TEXT, nomes_filhos TEXT, declarante_nome TEXT, declarante_profissao TEXT, declarante_estado
