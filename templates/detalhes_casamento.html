@@ -1,0 +1,30 @@
+<div class="detail-section">
+            <h2>Testemunhas</h2>
+            <h4>Testemunha 1</h4>
+            <div class="detail-item"><strong>Nome:</strong> <span>{{ reg.test1_nome }}</span></div>
+            <div class="detail-item"><strong>CPF:</strong> <span>{{ reg.test1_cpf }}</span></div>
+            <div class="detail-item"><strong>Endereço:</strong> <span>{{ reg.test1_endereco }}</span></div>
+            <h4>Testemunha 2</h4>
+            <div class="detail-item"><strong>Nome:</strong> <span>{{ reg.test2_nome }}</span></div>
+            <div class="detail-item"><strong>CPF:</strong> <span>{{ reg.test2_cpf }}</span></div>
+            <div class="detail-item"><strong>Endereço:</strong> <span>{{ reg.test2_endereco }}</span></div>
+        </div>
+
+        <div class="detail-section">
+            <h2>Documentos Anexados</h2>
+            <h4>Contraente 1</h4>
+            <p><strong>Identidade:</strong> {% for file in reg.arquivos_noivo1_id.split(',') %}<a href="/uploads/casamento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}</p>
+            <p><strong>Endereço:</strong> {% for file in reg.arquivos_noivo1_end.split(',') %}<a href="/uploads/casamento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}</p>
+            <hr><h4>Contraente 2</h4>
+            <p><strong>Identidade:</strong> {% for file in reg.arquivos_noivo2_id.split(',') %}<a href="/uploads/casamento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}</p>
+            <p><strong>Endereço:</strong> {% for file in reg.arquivos_noivo2_end.split(',') %}<a href="/uploads/casamento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}</p>
+            <hr><h4>Testemunhas</h4>
+            <p><strong>Identidade Test. 1:</strong> {% for file in reg.arquivos_test1_id.split(',') %}<a href="/uploads/casamento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}</p>
+            <p><strong>Endereço Test. 1:</strong> {% for file in reg.arquivos_test1_end.split(',') %}<a href="/uploads/casamento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}</p>
+            <p><strong>Identidade Test. 2:</strong> {% for file in reg.arquivos_test2_id.split(',') %}<a href="/uploads/casamento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}</p>
+            <p><strong>Endereço Test. 2:</strong> {% for file in reg.arquivos_test2_end.split(',') %}<a href="/uploads/casamento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}</p>
+        </div>
+        <br><a href="/admin">Voltar para a lista</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    border-bottom: 1px solid #dddfe2;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+header h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+header p {
+    font-size: 16px;
+    color: #606770;
+}
+
+fieldset {
+    border: 1px solid #dddfe2;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1877f2;
+    padding: 0 10px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group input[type="text"],
+.input-group input[type="tel"],
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box; /* Importante para o padding não aumentar a largura */
+}
+
+.input-group input[type="file"] {
+    padding: 5px;
+}
+
+textarea {
+    resize: vertical; /* Permite que o usuário redimensione a altura */
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #166fe5;
+}
+
+/* ESTILOS DA LISTA DE ARQUIVOS - JÁ INCLUSOS AQUI */
+.file-list {
+    margin-top: 10px;
+    background-color: #f0f2f5;
+    border-radius: 6px;
+    padding: 5px 15px;
+}
+
+.file-list ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 5px 0;
+}
+
+.file-list li {
+    font-size: 14px;
+    color: #333;
+    padding: 2px 0;
+}
+/* Adicione este código ao final do seu arquivo estilo.css */
+
+.hidden {
+    display: none;
+}

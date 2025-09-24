@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Registro de Nascimento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+    <style>
+        .detail-section { margin-bottom: 20px; }
+        .detail-section h2 { color: #1877f2; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
+        .detail-item { display: flex; margin-bottom: 8px; font-size: 16px; }
+        .detail-item strong { width: 200px; color: #606770; }
+        .file-link { margin-right: 10px; text-decoration: none; background-color: #e9ecef; padding: 5px 10px; border-radius: 4px; }
+        .file-link:hover { background-color: #dee2e6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Detalhes do Registro de Nascimento #{{ reg.id }}</h1>
+            <p>Recebido em: {{ reg.data_envio }}</p>
+        </header>
+
+        <div class="detail-section">
+            <h2>Dados do Nascido(a)</h2>
+            <div class="detail-item"><strong>Nome Completo:</strong> <span>{{ reg.nome_nascido }}</span></div>
+        </div>
+
+        <div class="detail-section">
+            <h2>Dados da Mãe</h2>
+            <div class="detail-item"><strong>Nome:</strong> <span>{{ reg.mae_nome }}</span></div>
+            <div class="detail-item"><strong>Naturalidade:</strong> <span>{{ reg.mae_naturalidade }}</span></div>
+            <div class="detail-item"><strong>Estado Civil:</strong> <span>{{ reg.mae_estado_civil }}</span></div>
+            <div class="detail-item"><strong>Profissão:</strong> <span>{{ reg.mae_profissao }}</span></div>
+            <div class="detail-item"><strong>Endereço:</strong> <span>{{ reg.mae_endereco }} - CEP: {{ reg.mae_cep }}</span></div>
+            <div class="detail-item"><strong>Telefone:</strong> <span>{{ reg.mae_telefone }}</span></div>
+            <div class="detail-item"><strong>RG:</strong> <span>{{ reg.mae_rg }}</span></div>
+            <div class="detail-item"><strong>CPF:</strong> <span>{{ reg.mae_cpf }}</span></div>
+            <div class="detail-item"><strong>CNH:</strong> <span>{{ reg.mae_cnh }}</span></div>
+            <div class="detail-item"><strong>Avós Maternos:</strong> <span>{{ reg.mae_avos }}</span></div>
+        </div>
+
+        <div class="detail-section">
+            <h2>Dados do Pai</h2>
+            <div class="detail-item"><strong>Nome:</strong> <span>{{ reg.pai_nome }}</span></div>
+            <div class="detail-item"><strong>Naturalidade:</strong> <span>{{ reg.pai_naturalidade }}</span></div>
+            <div class="detail-item"><strong>Estado Civil:</strong> <span>{{ reg.pai_estado_civil }}</span></div>
+            <div class="detail-item"><strong>Profissão:</strong> <span>{{ reg.pai_profissao }}</span></div>
+            <div class="detail-item"><strong>Endereço:</strong> <span>{{ reg.pai_endereco }} - CEP: {{ reg.pai_cep }}</span></div>
+            <div class="detail-item"><strong>Telefone:</strong> <span>{{ reg.pai_telefone }}</span></div>
+            <div class="detail-item"><strong>RG:</strong> <span>{{ reg.pai_rg }}</span></div>
+            <div class="detail-item"><strong>CPF:</strong> <span>{{ reg.pai_cpf }}</span></div>
+            <div class="detail-item"><strong>CNH:</strong> <span>{{ reg.pai_cnh }}</span></div>
+            <div class="detail-item"><strong>Avós Paternos:</strong> <span>{{ reg.pai_avos }}</span></div>
+        </div>
+        
+        <div class="detail-section">
+            <h2>Documentos Anexados</h2>
+            <p><strong>DNV:</strong>
+                {% for file in reg.arquivos_dnv.split(',') %}<a href="/uploads/nascimento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}
+            </p>
+            <p><strong>Docs Identidade:</strong>
+                {% for file in reg.arquivos_identidade.split(',') %}<a href="/uploads/nascimento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}
+            </p>
+            <p><strong>Docs Endereço:</strong>
+                {% for file in reg.arquivos_endereco.split(',') %}<a href="/uploads/nascimento/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}
+            </p>
+        </div>
+        <br>
+        <a href="/admin">Voltar para a lista</a>
+    </div>
+</body>
+</html>

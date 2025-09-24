@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Registro de Óbito</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+    <style>
+        .detail-section { margin-bottom: 20px; }
+        .detail-section h2 { color: #1877f2; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
+        .detail-item { display: flex; margin-bottom: 8px; font-size: 16px; flex-wrap: wrap; }
+        .detail-item strong { width: 250px; color: #606770; }
+        .file-link { margin-right: 10px; text-decoration: none; background-color: #e9ecef; padding: 5px 10px; border-radius: 4px; }
+        .file-link:hover { background-color: #dee2e6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Detalhes do Registro de Óbito #{{ reg.id }}</h1>
+            <p>Recebido em: {{ reg.data_envio }}</p>
+        </header>
+
+        <div class="detail-section">
+            <h2>Dados do Falecido(a)</h2>
+            <div class="detail-item"><strong>Nome Completo:</strong> <span>{{ reg.falecido_nome }}</span></div>
+            <div class="detail-item"><strong>Data de Nascimento:</strong> <span>{{ reg.falecido_dt_nasc }}</span></div>
+            <div class="detail-item"><strong>Naturalidade:</strong> <span>{{ reg.falecido_naturalidade }}</span></div>
+            <div class="detail-item"><strong>Estado Civil:</strong> <span>{{ reg.falecido_estado_civil }}</span></div>
+            <div class="detail-item"><strong>Nome do Cônjuge:</strong> <span>{{ reg.falecido_conjuge }}</span></div>
+            <div class="detail-item"><strong>Profissão:</strong> <span>{{ reg.falecido_profissao }}</span></div>
+            <div class="detail-item"><strong>RG:</strong> <span>{{ reg.falecido_rg }}</span></div>
+            <div class="detail-item"><strong>CPF:</strong> <span>{{ reg.falecido_cpf }}</span></div>
+            <div class="detail-item"><strong>CNH:</strong> <span>{{ reg.falecido_cnh }}</span></div>
+            <div class="detail-item"><strong>Nomes dos Pais:</strong> <span>{{ reg.falecido_pais }}</span></div>
+            <div class="detail-item"><strong>Endereço:</strong> <span>{{ reg.falecido_endereco }}</span></div>
+        </div>
+
+        <div class="detail-section">
+            <h2>Informações do Óbito</h2>
+            <div class="detail-item"><strong>Número da DO:</strong> <span>{{ reg.do_numero }}</span></div>
+            <div class="detail-item"><strong>Médico:</strong> <span>{{ reg.medico_nome }} (CRM: {{ reg.medico_crm }})</span></div>
+            <div class="detail-item"><strong>Causa da Morte:</strong> <span>{{ reg.causa_morte }}</span></div>
+            <div class="detail-item"><strong>Data do Óbito:</strong> <span>{{ reg.data_obito }}</span></div>
+            <div class="detail-item"><strong>Hora do Óbito:</strong> <span>{{ reg.hora_obito }}</span></div>
+            <div class="detail-item"><strong>Local do Óbito:</strong> <span>{{ reg.local_obito }}</span></div>
+            <div class="detail-item"><strong>Local de Sepultamento:</strong> <span>{{ reg.local_sepultamento }}</span></div>
+            <div class="detail-item"><strong>Era Eleitor:</strong> <span>{{ reg.era_eleitor }}</span></div>
+            <div class="detail-item"><strong>Deixou Testamento:</strong> <span>{{ reg.deixou_testamento }}</span></div>
+            <div class="detail-item"><strong>Deixou Bens:</strong> <span>{{ reg.deixou_bens }}</span></div>
+            <div class="detail-item"><strong>Tinha Filhos:</strong> <span>{{ reg.tinha_filhos }}</span></div>
+            <div class="detail-item"><strong>Nomes dos Filhos:</strong> <span>{{ reg.nomes_filhos }}</span></div>
+        </div>
+
+        <div class="detail-section">
+            <h2>Dados do(a) Declarante</h2>
+            <div class="detail-item"><strong>Nome:</strong> <span>{{ reg.declarante_nome }}</span></div>
+            <div class="detail-item"><strong>Profissão:</strong> <span>{{ reg.declarante_profissao }}</span></div>
+            <div class="detail-item"><strong>Estado Civil:</strong> <span>{{ reg.declarante_estado_civil }}</span></div>
+            <div class="detail-item"><strong>Naturalidade:</strong> <span>{{ reg.declarante_naturalidade }}</span></div>
+            <div class="detail-item"><strong>Data de Nascimento:</strong> <span>{{ reg.declarante_dt_nasc }}</span></div>
+            <div class="detail-item"><strong>Endereço:</strong> <span>{{ reg.declarante_endereco }}</span></div>
+            <div class="detail-item"><strong>RG:</strong> <span>{{ reg.declarante_rg }}</span></div>
+            <div class="detail-item"><strong>CPF:</strong> <span>{{ reg.declarante_cpf }}</span></div>
+            <div class="detail-item"><strong>CNH:</strong> <span>{{ reg.declarante_cnh }}</span></div>
+        </div>
+
+        <div class="detail-section">
+            <h2>Documentos Anexados</h2>
+            <p><strong>DO:</strong>
+                {% for file in reg.arquivos_do.split(',') %}<a href="/uploads/obito/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}
+            </p>
+            <p><strong>Docs Falecido(a):</strong>
+                {% for file in reg.arquivos_falecido.split(',') %}<a href="/uploads/obito/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}
+            </p>
+            <p><strong>Docs Declarante:</strong>
+                {% for file in reg.arquivos_declarante.split(',') %}<a href="/uploads/obito/{{ file }}" target="_blank" class="file-link">{{ loop.index }}</a>{% endfor %}
+            </p>
+        </div>
+        <br>
+        <a href="/admin">Voltar para a lista</a>
+    </div>
+</body>
+</html>
