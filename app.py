@@ -9,7 +9,6 @@ from flask_mail import Mail, Message
 # --- CONFIGURAÇÃO ---
 load_dotenv() 
 app = Flask(__name__)
-
 app.config.update(
     SECRET_KEY=os.environ.get('SECRET_KEY', 'default-secret-key'),
     UPLOAD_FOLDER='uploads',
@@ -20,9 +19,7 @@ app.config.update(
     MAIL_PASSWORD=os.environ.get('SENDGRID_API_KEY'),
     MAIL_DEFAULT_SENDER=os.environ.get('MAIL_DEFAULT_SENDER')
 )
-
 mail = Mail(app)
-
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
@@ -30,15 +27,12 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
 @app.route('/')
 def homepage(): 
     return render_template('homepage.html')
-
 @app.route('/nascimento')
 def form_nascimento(): 
     return render_template('formulario_nascimento.html')
-
 @app.route('/obito')
 def form_obito(): 
     return render_template('formulario_obito.html')
-
 @app.route('/casamento')
 def form_casamento(): 
     return render_template('formulario_casamento.html')
@@ -65,16 +59,12 @@ def enviar_email_registro(titulo, dados_formulario, arquivos_salvos):
         if not destinatario:
             print("ERRO: E-mail do destinatário não configurado.")
             return
-
         msg = Message(titulo, recipients=[destinatario])
-        
-        html_body = f"<h1>{titulo}</h1>"
-        html_body += "<h2>Dados do Formulário:</h2>"
+        html_body = f"<h1>{titulo}</h1><h2>Dados do Formulário:</h2>"
         html_body += "<table border='1' cellpadding='5' style='border-collapse: collapse; width: 100%;'>"
         for chave, valor in dados_formulario.items():
             html_body += f"<tr><td style='background-color: #f2f2f2; width: 30%;'><strong>{chave.replace('_', ' ').title()}</strong></td><td>{valor}</td></tr>"
         html_body += "</table>"
-        
         if any(arquivos_salvos.values()):
             html_body += "<h2>Links para os Documentos:</h2><ul>"
             for tipo_doc, nomes in arquivos_salvos.items():
@@ -84,7 +74,6 @@ def enviar_email_registro(titulo, dados_formulario, arquivos_salvos):
                         link = url_for('uploaded_file', subpasta=subpasta, filename=nome_arquivo, _external=True)
                         html_body += f"<li><a href='{link}'>{tipo_doc.replace('_', ' ').title()}</a></li>"
             html_body += "</ul>"
-            
         msg.html = html_body
         mail.send(msg)
         print(f"E-mail '{titulo}' enviado para {destinatario}")
@@ -122,4 +111,19 @@ def receber_casamento():
         'Casamento_Noivo1_Endereco': salvar_arquivos(request.files.getlist('doc_noivo1_end[]'), 'casamento'),
         'Casamento_Noivo2_ID': salvar_arquivos(request.files.getlist('doc_noivo2_id[]'), 'casamento'),
         'Casamento_Noivo2_Endereco': salvar_arquivos(request.files.getlist('doc_noivo2_end[]'), 'casamento'),
-        'Casamento_Testemunha1_ID': salvar_arquivos(request.files.getlist('
+        'Casamento_Testemunha1_ID': salvar_arquivos(request.files.getlist('doc_test1_id[]'), 'casamento'),
+        'Casamento_Testemunha1_Endereco': salvar_arquivos(request.files.getlist('doc_test1_end[]'), 'casamento'),
+        'Casamento_Testemunha2_ID': salvar_arquivos(request.files.getlist('doc_test2_id[]'), 'casamento'),
+        'Casamento_Testemunha2_Endereco': salvar_arquivos(request.files.getlist('doc_test2_end[]'), 'casamento')
+    }
+    enviar_email_registro("Nova Habilitação de Casamento", dados, arquivos)
+    return "<h1>Formulário enviado com sucesso! Você receberá os dados por e-mail.</h1>"
+
+# Rota para servir os arquivos enviados
+@app.route('/uploads/<path:subpasta>/<path:filename>')
+def uploaded_file(subpasta, filename):
+    caminho = os.path.join(app.config['UPLOAD_FOLDER'], subpasta)
+    return send_from_directory(caminho, filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)
