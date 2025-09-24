@@ -11,11 +11,15 @@ from dotenv import load_dotenv
 # --- CONFIGURAÇÃO E CRIAÇÃO DO APP ---
 load_dotenv() 
 app = Flask(__name__)
+
+# ATENÇÃO: MUDANÇA APLICADA AQUI. 
+# Trocamos .get() por [...] para forçar um erro se a variável não for encontrada.
 app.config.update(
-    SECRET_KEY=os.environ.get('SECRET_KEY', 'default-secret-key'),
+    SECRET_KEY=os.environ['SECRET_KEY'],
     UPLOAD_FOLDER='uploads',
-    DATABASE_URL=os.environ.get('DATABASE_URL')
+    DATABASE_URL=os.environ['DATABASE_URL']
 )
+
 if not os.path.exists(app.config['UPLOAD_FOLDER']): os.makedirs(app.config['UPLOAD_FOLDER'])
 
 # --- BANCO DE DADOS POSTGRESQL ---
@@ -36,7 +40,6 @@ def login_required(f):
         if 'logged_in' not in session: return redirect(url_for('login'))
         return f(*args, **kwargs)
     return decorated_function
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -45,7 +48,6 @@ def login():
         else:
             flash('Usuário ou senha inválidos.')
     return render_template('login.html')
-
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None); return redirect(url_for('login'))
@@ -77,42 +79,23 @@ def salvar_arquivos(file_storage, subpasta):
     return ','.join(nomes_salvos)
 
 # --- ROTAS DE PROCESSAMENTO ---
-
 @app.route('/enviar-nascimento', methods=['POST'])
 def receber_nascimento():
-    # TESTE FINAL: SALVANDO APENAS DADOS DE TEXTO
-    conn = None
+    db_conn = get_db()
+    cursor = db_conn.cursor()
+    dados = dict(request.form)
+    dados['arquivos_dnv'] = salvar_arquivos(request.files.getlist('doc_dnv[]'), 'nascimento')
+    dados['arquivos_identidade'] = salvar_arquivos(request.files.getlist('doc_identidade[]'), 'nascimento')
+    dados['arquivos_endereco'] = salvar_arquivos(request.files.getlist('doc_endereco[]'), 'nascimento')
+    colunas = ', '.join(dados.keys()); placeholders = ', '.join(['%s'] * len(dados))
+    query = f"INSERT INTO nascimentos ({colunas}) VALUES ({placeholders})"
     try:
-        print("--- INICIANDO TESTE SEM UPLOAD DE ARQUIVOS ---")
-        conn = psycopg2.connect(app.config['DATABASE_URL'])
-        cursor = conn.cursor()
-        
-        # Pega apenas alguns dados de texto do formulário
-        nome_nascido = request.form.get('nome_nascido')
-        mae_nome = request.form.get('mae_nome')
-        pai_nome = request.form.get('pai_nome')
-
-        print(f"Tentando inserir: {nome_nascido}, {mae_nome}, {pai_nome}")
-        
-        # Query SQL simplificada
-        query = "INSERT INTO nascimentos (nome_nascido, mae_nome, pai_nome) VALUES (%s, %s, %s)"
-        
-        cursor.execute(query, (nome_nascido, mae_nome, pai_nome))
-        conn.commit() # Commit
-        
-        print("!!! SUCESSO NO COMMIT SEM ARQUIVOS !!!")
-        
+        cursor.execute(query, list(dados.values())); db_conn.commit()
     except Exception as e:
-        print(f"!!!!!!!!!! ERRO CRÍTICO NO TESTE SEM ARQUIVOS !!!!!!!!!!")
-        print(str(e))
-        if conn:
-            conn.rollback()
-        return "<h1>Ocorreu um erro. Verifique os logs.</h1>", 500
+        db_conn.rollback(); print(f"ERRO ao salvar nascimento: {e}")
     finally:
-        if conn:
-            conn.close()
-            
-    return "<h1>Teste SEM arquivos executado! Verifique o painel /admin.</h1>"
+        cursor.close()
+    return "<h1>Dados e documentos de Nascimento salvos com sucesso!</h1>"
 
 @app.route('/enviar-obito', methods=['POST'])
 def receber_obito():
@@ -159,33 +142,5 @@ def admin_panel():
     cursor.execute('SELECT id, noivo1_nome, noivo2_nome FROM casamentos ORDER BY id DESC'); casamentos = cursor.fetchall()
     cursor.close()
     return render_template('admin.html', nascimentos=nascimentos, obitos=obitos, casamentos=casamentos)
-
 @app.route('/nascimento/<int:id>')
-@login_required
-def detalhes_nascimento(id):
-    db=get_db();cursor=db.cursor();cursor.execute('SELECT * FROM nascimentos WHERE id = %s',(id,));registro=cursor.fetchone();cursor.close()
-    if registro is None: abort(404)
-    return render_template('detalhes_nascimento.html',reg=registro)
-
-@app.route('/obito/<int:id>')
-@login_required
-def detalhes_obito(id):
-    db=get_db();cursor=db.cursor();cursor.execute('SELECT * FROM obitos WHERE id = %s',(id,));registro=cursor.fetchone();cursor.close()
-    if registro is None: abort(404)
-    return render_template('detalhes_obito.html',reg=registro)
-
-@app.route('/casamento/<int:id>')
-@login_required
-def detalhes_casamento(id):
-    db=get_db();cursor=db.cursor();cursor.execute('SELECT * FROM casamentos WHERE id = %s',(id,));registro=cursor.fetchone();cursor.close()
-    if registro is None: abort(404)
-    return render_template('detalhes_casamento.html',reg=registro)
-
-@app.route('/uploads/<path:subpasta>/<path:filename>')
-@login_required
-def uploaded_file(subpasta, filename):
-    caminho = os.path.join(app.config['UPLOAD_FOLDER'], subpasta)
-    return send_from_directory(caminho, filename)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+@login_
