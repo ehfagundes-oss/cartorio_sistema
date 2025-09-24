@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pré-Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Pré-Registro do Cartório</h1>
+            <p>Selecione o serviço desejado:</p>
+        </header>
+        
+        <ul>
+            <li><a href="/nascimento">Pré-Registro de Nascimento</a></li>
+            <li><a href="/obito">Pré-Registro de Óbito</a></li>
+            <li><a href="/casamento">Pré-Habilitação de Casamento</a></li>
+        </ul>
+        <hr>
+        <p><a href="/admin"><b>Acesso ao Painel Administrativo</b></a></p>
+    </div>
+</body>
+</html>

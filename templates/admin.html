@@ -12,48 +12,19 @@
         .registro strong { display: inline-block; width: 150px; }
         .details-button { float: right; text-decoration: none; background-color: #28a745; color: white; padding: 8px 12px; border-radius: 5px; font-weight: bold; }
         .details-button:hover { background-color: #218838; }
+        /* NOVO BOTÃO DE LOGOUT */
+        .logout-link { display: block; text-align: right; margin-bottom: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
+        <a href="/logout" class="logout-link">Sair (Logout)</a>
+        
         <header><h1>Painel Administrativo</h1><p>Aqui estão os últimos registros recebidos.</p></header>
 
-        <section>
-            <h2>Registros de Nascimento</h2>
-            {% for reg in nascimentos %}
-            <div class="registro">
-                <a href="/nascimento/{{ reg['id'] }}" class="details-button">Ver Detalhes</a>
-                <h3>ID: {{ reg['id'] }}</h3>
-                <p><strong>Nascido(a):</strong> {{ reg['nome_nascido'] }}</p>
-                <p><strong>Mãe:</strong> {{ reg['mae_nome'] }}</p>
-                <p><strong>Pai:</strong> {{ reg['pai_nome'] }}</p>
-            </div>
-            {% else %}<p>Nenhum registro de nascimento encontrado.</p>{% endfor %}
-        </section>
-        
-        <section>
-            <h2>Registros de Óbito</h2>
-             {% for reg in obitos %}
-            <div class="registro">
-                <a href="/obito/{{ reg['id'] }}" class="details-button">Ver Detalhes</a>
-                <h3>ID: {{ reg['id'] }}</h3>
-                <p><strong>Falecido(a):</strong> {{ reg['falecido_nome'] }}</p>
-                <p><strong>Declarante:</strong> {{ reg['declarante_nome'] }}</p>
-            </div>
-            {% else %}<p>Nenhum registro de óbito encontrado.</p>{% endfor %}
-        </section>
-
-        <section>
-            <h2>Habilitações de Casamento</h2>
-            {% for reg in casamentos %}
-            <div class="registro">
-                <a href="/casamento/{{ reg['id'] }}" class="details-button">Ver Detalhes</a>
-                <h3>ID: {{ reg['id'] }}</h3>
-                <p><strong>Contraente 1:</strong> {{ reg['noivo1_nome'] }}</p>
-                <p><strong>Contraente 2:</strong> {{ reg['noivo2_nome'] }}</p>
-            </div>
-            {% else %}<p>Nenhuma habilitação de casamento encontrada.</p>{% endfor %}
-        </section>
+        <section><h2>Registros de Nascimento</h2></section>
+        <section><h2>Registros de Óbito</h2></section>
+        <section><h2>Habilitações de Casamento</h2></section>
     </div>
 </body>
 </html>
